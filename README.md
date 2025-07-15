@@ -32,10 +32,10 @@ Database (Future Expansion): MySQL / Amazon RDS
 API Documentation
 
 Interactive Swagger UI available when running APIs:
-https://your-ngrok-url/docs
+https://532bcf736135.ngrok-free.app/docs
 
 For detailed API specification, see:
-swagger.yaml
+support_copilot_api.yaml
 
 Setup Instructions
 
@@ -53,7 +53,7 @@ import uvicorn
 
 Access Swagger UI:
 
-https://your-ngrok-url/docs
+https://532bcf736135.ngrok-free.app/docs
 
 
 API Endpoints:
@@ -68,10 +68,10 @@ Architecture Diagram
 
 Project Files
 
-api_code.ipynb – FastAPI Colab Notebook
-swagger.yaml – API Documentation (OpenAPI Spec)
-architecture_diagram.png – System Architecture
-explanation_document.docx – Technical Explanation
+https://colab.research.google.com/drive/1w0cczuTOzhtCO4j9x-rmwZKg5c2_7YVg?usp=sharing – FastAPI Colab Notebook
+support_copilot_api.yaml – API Documentation (OpenAPI Spec)
+system architecture.png – System Architecture
+explanation_document.docs – Technical Explanation
 
 Security
 
@@ -83,3 +83,8 @@ Future Improvements
 Connect APIs to actual MySQL/AWS RDS databases.
 Use real LLM APIs for summarization and message recommendation.
 Deploy to AWS EC2 / Lambda for scalable production usage.
+
+Author
+
+Developed by Nagashree
+Contact: ygnagashree@gmail.com
