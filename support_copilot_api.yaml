@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: AI-Powered Support Copilot APIs
+  version: 1.0.0
+  description: |
+    REST APIs for issue analysis, message template recommendation, conversation summarization, and unattended issue monitoring.
+
+servers:
+  - url: https://yourdomain.com
+
+paths:
+  /api/issues/analyze:
+    post:
+      summary: Analyze a support issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueInput'
+      responses:
+        '200':
+          description: Issue analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueAnalysisResponse'
+
+  /api/issues/history:
+    get:
+      summary: Fetch customer's past issues
+      parameters:
+        - in: query
+          name: customer_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer issue history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueHistoryResponse'
+
+  /api/issues/similar:
+    post:
+      summary: Search similar past issues
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueInput'
+      responses:
+        '200':
+          description: Similar issue search result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimilarIssuesResponse'
+
+  /api/messages/recommend-template:
+    post:
+      summary: Recommend message template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageInput'
+      responses:
+        '200':
+          description: Recommended message template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageTemplateResponse'
+
+  /api/conversations/summary:
+    post:
+      summary: Generate conversation summary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationInput'
+      responses:
+        '200':
+          description: Conversation summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationSummaryResponse'
+
+  /api/issues/unattended:
+    get:
+      summary: Fetch unattended critical issues
+      responses:
+        '200':
+          description: Unattended critical issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnattendedIssuesResponse'
+
+components:
+  schemas:
+    IssueInput:
+      type: object
+      properties:
+        customer_id:
+          type: string
+        issue_description:
+          type: string
+        product_id:
+          type: string
+
+    MessageInput:
+      type: object
+      properties:
+        customer_id:
+          type: string
+        issue_description:
+          type: string
+        severity:
+          type: string
+
+    ConversationInput:
+      type: object
+      properties:
+        conversation_history:
+          type: array
+          items:
+            type: object
+            properties:
+              from:
+                type: string
+              message:
+                type: string
+
+    IssueAnalysisResponse:
+      type: object
+      properties:
+        customer_past_issues:
+          type: integer
+        similar_issues:
+          type: array
+          items:
+            type: object
+            properties:
+              issue_id:
+                type: string
+              resolution:
+                type: string
+        severity:
+          type: string
+        unattended_critical_issue:
+          type: boolean
+
+    IssueHistoryResponse:
+      type: object
+      properties:
+        customer_id:
+          type: string
+        past_issues:
+          type: array
+          items:
+            type: object
+            properties:
+              issue_id:
+                type: string
+              description:
+                type: string
+              status:
+                type: string
+
+    SimilarIssuesResponse:
+      type: object
+      properties:
+        similar_issues:
+          type: array
+          items:
+            type: object
+            properties:
+              issue_id:
+                type: string
+              resolution:
+                type: string
+
+    MessageTemplateResponse:
+      type: object
+      properties:
+        recommended_message:
+          type: string
+
+    ConversationSummaryResponse:
+      type: object
+      properties:
+        conversation_summary:
+          type: string
+
+    UnattendedIssuesResponse:
+      type: object
+      properties:
+        unattended_critical_issues:
+          type: array
+          items:
+            type: object
+            properties:
+              issue_id:
+                type: string
+              customer_id:
+                type: string
+              created_at:
+                type: string
